@@ -19,12 +19,12 @@ hugoblox:
     # Schema.org type for structured data
     type: person                        # person | organization | local_business
     # Short tagline displayed on your site
-    tagline: ""
+    tagline: "Researcher in ML & Computer Security"
     # Site meta description for search engines and social sharing
-    description: "The highly-customizable Hugo Academic theme powered by HugoBlox Kit. Easily create your personal academic website."
+    description: "Farnaz Soltaniani – Researcher in Machine Learning, Computer Security, and Trustworthy AI at Clausthal University of Technology. Research on LLM Security, AI4SE, Adversarial ML, and Empirical Software Engineering."
     # Social accounts (used for meta tags like Twitter Cards)
     social:
-      twitter: "MakeOwnable"              # Twitter/X handle for Twitter Cards (without @)
+      twitter: ""
 
   # ────────────────────────────────────────────────────────────────────────────
   # THEME
@@ -130,7 +130,7 @@ hugoblox:
   # ────────────────────────────────────────────────────────────────────────────
   seo:
     # Browser tab title override (defaults to identity.name if not set)
-    title: ""
+    title: "Farnaz Soltaniani | ML & Computer Security Researcher"
     # For local_business identity type only
     location:
       address:

@@ -19,7 +19,7 @@ links:
     url: "https://scholar.google.com/citations?user=6H-yxskAAAAJ&hl=en"
     label: "Google Scholar"
   - icon: hero/link
-    url: "https://farnazsoltaniani.github.io/homepage/"
+    url: "https://farnazsoltaniani.github.io/"
     label: "Website"
   - icon: brands/linkedin
     url: "https://linkedin.com/in/Farnaz-Soltaniani"
