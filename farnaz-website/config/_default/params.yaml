@@ -130,7 +130,7 @@ hugoblox:
   # ────────────────────────────────────────────────────────────────────────────
   seo:
     # Browser tab title override (defaults to identity.name if not set)
-    title: "Farnaz Soltaniani | ML & Computer Security Researcher"
+    title: "Farnaz Soltaniani"
     # For local_business identity type only
     location:
       address:
