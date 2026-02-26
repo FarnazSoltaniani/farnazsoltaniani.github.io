@@ -1,0 +1,52 @@
+schema: hugoblox/author/v1
+slug: farnaz-soltaniani
+is_owner: true
+name:
+  display: Farnaz Soltaniani
+role: <u>ML</u> & Computer Security
+bio: |
+affiliations:
+  - name: Clausthal University of Technology
+    url: https://www.tu-clausthal.de/
+links:
+  - icon: hero/map-pin
+    url: "https://maps.google.com/?q=Goslar,+Germany"
+    label: "Goslar, Germany"
+  - icon: hero/envelope
+    url: "mailto:farnaz.soltaniani@tu-clausthal.de"
+    label: "Email"
+  - icon: academicons/google-scholar
+    url: "https://scholar.google.com/citations?user=6H-yxskAAAAJ&hl=en"
+    label: "Google Scholar"
+  - icon: hero/link
+    url: "https://farnazsoltaniani.github.io/homepage/"
+    label: "Website"
+  - icon: brands/linkedin
+    url: "https://linkedin.com/in/Farnaz-Soltaniani"
+    label: "LinkedIn"
+  - icon: brands/orcid
+    url: "https://orcid.org/0000-0001-5630-8571"
+    label: "ORCID"
+  - icon: brands/github
+    url: "https://github.com/FarnazSoltaniani"
+    label: "GitHub"
+
+skills:
+  - name: Programming Languages
+    items:
+      - label: Python
+      - label: JavaScript
+      - label: C++
+  - name: ML & AI
+    items:
+      - label: PyTorch / TensorFlow
+      - label: Hugging Face / scikit-learn
+      - label: NumPy / pandas
+  - name: Tools & Web
+    items:
+      - label: Git / Docker / IDEs
+      - label: Angular / Flask
+  - name: Simulation Tools
+    items:
+      - label: KODO / NS2 / NS3
+

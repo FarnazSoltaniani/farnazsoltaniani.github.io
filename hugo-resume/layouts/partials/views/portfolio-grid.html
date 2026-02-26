@@ -1,0 +1,23 @@
+{{ $item := .item }}
+
+{{/* Find the featured image for the item */}}
+{{ $image := "" }}
+{{ if $item.Resources }}
+{{ $image = $item.Resources.GetMatch "featured.*" }}
+{{ end }}
+
+<div class="mb-4 relative group overflow-hidden bg-gray-100 rounded-lg shadow-sm w-full" style="aspect-ratio: 1 / 1;">
+    {{ if $image }}
+    <img src="{{ $image.RelPermalink }}" loading="lazy" alt="{{ $item.Title }}"
+        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+    {{ else }}
+    <!-- Fallback if no image -->
+    <div class="p-6 bg-white dark:bg-slate-800">
+        <h3 class="text-lg font-bold text-gray-900 dark:text-white">{{ $item.Title }}</h3>
+    </div>
+    {{ end }}
+    <div
+        class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <h3 class="text-white font-semibold text-sm leading-tight m-0 p-0 text-center">{{ $item.Title }}</h3>
+    </div>
+</div>

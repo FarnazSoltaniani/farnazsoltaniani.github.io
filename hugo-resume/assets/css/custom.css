@@ -1,0 +1,79 @@
+/* Custom Navbar Brand Subtitle Injection */
+.navbar-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1;
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
+    font-size: 1.25rem !important;
+    /* text-xl */
+    font-weight: 700 !important;
+    /* font-bold */
+    color: #475569 !important;
+    /* slate-600 */
+    letter-spacing: -0.025em !important;
+    /* tracking-tight */
+}
+
+.navbar-brand::after {
+    content: "Personal Homepage";
+    font-size: 0.75rem !important;
+    /* text-xs */
+    font-weight: 600 !important;
+    /* font-semibold */
+    color: #64748B !important;
+    /* slate-500 */
+    margin-top: 0.25rem !important;
+    letter-spacing: 0rem !important;
+}
+
+/* Global Link Color Styling */
+a {
+    color: #2083cede !important;
+}
+
+/* Optional: Slight darker blue on hover and underline */
+a:hover {
+    color: #0c3a64 !important;
+    text-decoration: underline !important;
+}
+
+/* Section Spacing */
+.section,
+.home-section,
+[class*="wg-"],
+.hugo-blox-container,
+.hb-section,
+.hb-section-sm,
+.hbb-section,
+.blox-markdown {
+    padding-top: 0.1rem !important;
+    padding-bottom: 0.1rem !important;
+}
+
+/* Override the theme's section spacing CSS variable */
+:root {
+    --hb-spacing-section: 0.5rem !important;
+}
+
+/* Ensure headings don't add too much top margin */
+.heading h1,
+.heading h2,
+.section-heading h1,
+.section-heading h2 {
+    margin-top: 0 !important;
+    margin-bottom: 0.5rem !important;
+    padding-top: 0 !important;
+}
+
+/* Prose and list margins */
+.prose ul,
+.prose p {
+    margin-bottom: 0.5rem !important;
+}
+
+/* Ensure navbar links also follow this */
+.navbar-nav li a {
+    color: #155ea3 !important;
+}

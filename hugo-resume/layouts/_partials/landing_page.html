@@ -1,0 +1,17 @@
+{{/* Load Hugo Blox - HBX resolver-based system */}}
+{{- $sections := partial "hbx/sections.html" . -}}
+<!-- TWO COLUMN PERSISTENT LAYOUT FOR HOMEPAGE -->
+<div class="flex flex-col md:flex-row max-w-[1400px] w-full px-4 sm:px-6 lg:px-8 xl:px-12 mt-0 mb-24">
+  {{ partial "components/sidebar-profile.html" . }}
+  <div class="md:w-[calc(100%-14rem)] md:pl-8 mt-4 md:mt-0 w-full">
+    <div class="flex flex-col gap-0">
+      {{ range $index, $block := $sections }}
+      {{ if or (not $block.demo) ($block.demo | and (eq (os.Getenv "HUGO_BLOX_DEMO") "true")) }}
+      <div class="w-full">
+        {{ partial "functions/parse_block_v3" (dict "page" $ "block" $block) }}
+      </div>
+      {{ end }}
+      {{ end }}
+    </div>
+  </div> <!-- end right content column -->
+</div> <!-- end flex container -->

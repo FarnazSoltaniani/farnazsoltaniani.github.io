@@ -1,0 +1,57 @@
+{{ define "main" }}
+<!-- TWO COLUMN PERSISTENT LAYOUT -->
+<div class="flex flex-col md:flex-row max-w-[1400px] w-full px-4 sm:px-6 lg:px-8 xl:px-12 mt-0 mb-24">
+  {{ partial "components/sidebar-profile.html" . }}
+  <div class="md:w-[calc(100%-14rem)] md:pl-8 mt-4 md:mt-0 w-full">
+    <div class="flex flex-col items-start justify-start max-w-full px-0 w-full pt-[60px] pb-[60px]">
+      <div class="mb-6 text-3xl font-bold text-gray-900 dark:text-white">
+        {{ $words := split .Title " " }}
+        <span
+          style="border-bottom: 3px solid #155ea3; padding-bottom: 2px; display: inline-block; padding-right: 4px;">{{
+          index $words 0 }}</span>
+        {{ if gt (len $words) 1 }}
+        {{ delimit (after 1 $words) " " }}
+        {{ end }}
+      </div>
+      {{ with .Content }}
+      <div class="prose prose-slate prose-sm max-w-none mt-5 dark:prose-invert">
+        {{ . }}
+      </div>
+      {{ end }}
+    </div>
+
+    {{ $view := .Params.view | default "card" }}
+    {{ $block := . }}
+
+    {{ $paginator := .Paginate .Pages.ByDate.Reverse }}
+    {{ $config := dict
+    "columns" (.Params.columns | default 2)
+    "len" (len $paginator.Pages)
+    "fill_image" (.Params.fill_image | default true)
+    "show_date" (.Params.show_date | default true)
+    "show_read_time" (.Params.show_read_time | default true)
+    "show_read_more" (.Params.show_read_more | default true)
+    }}
+
+    {{/* Check if any pages have author_notes to enable Alpine.js */}}
+    {{ range .Pages }}
+    {{ if isset .Params "author_notes" }}
+    {{ $.Store.Set "has_alpine" true }}
+    {{ break }}
+    {{ end }}
+    {{ end }}
+
+    <div class="flex flex-col items-start w-full gap-8">
+      {{ partial "functions/render_view" (dict "fragment" "start" "page" $block "item" . "view" $view "config"
+      $config) }}
+
+      {{ range .Pages.ByDate.Reverse }}
+      {{ partial "functions/render_view" (dict "page" . "item" . "view" $view "config" $config) }}
+      {{ end }}
+
+      {{ partial "functions/render_view" (dict "fragment" "end" "page" $block "item" . "view" $view) }}
+    </div>
+
+  </div> <!-- end right column -->
+</div> <!-- end two column flex container -->
+{{ end }}

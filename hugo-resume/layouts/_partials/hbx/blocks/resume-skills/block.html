@@ -1,0 +1,107 @@
+{{/* Hugo Blox: Skills (Custom local override for tag layout) */}}
+
+{{/* Initialise */}}
+{{ $page := .wcPage }}
+{{ $block := .wcBlock }}
+{{ $content := $block.content }}
+{{ if not (reflect.IsMap $content) }}{{ $content = dict }}{{ end }}
+{{ $design := $block.design }}
+{{ if not (reflect.IsMap $design) }}{{ $design = dict }}{{ end }}
+
+{{ $username := "me" }}
+{{ $username_raw := index $content "username" }}
+{{ if eq (printf "%T" $username_raw) "string" }}
+{{ $username = strings.TrimSpace $username_raw }}
+{{ end }}
+{{ $profile := partial "functions/get_author_profile" $username }}
+
+{{ $skills_raw := $profile.skills }}
+{{ $skills_iter := slice }}
+{{ if reflect.IsSlice $skills_raw }}
+{{ $skills_iter = $skills_raw }}
+{{ else if and $skills_raw (reflect.IsMap $skills_raw) }}
+{{ $skills_iter = slice $skills_raw }}
+{{ end }}
+
+{{ $skills := slice }}
+{{ if gt (len $skills_iter) 0 }}
+{{ range $skills_iter }}
+{{ if reflect.IsMap . }}
+{{ $name := "" }}
+{{ $items_raw := index . "items" }}
+{{ $items_iter := slice }}
+{{ if reflect.IsSlice $items_raw }}
+{{ $items_iter = $items_raw }}
+{{ else if and $items_raw (reflect.IsMap $items_raw) }}
+{{ $items_iter = slice $items_raw }}
+{{ end }}
+{{ $items := slice }}
+
+{{ with index . "name" }}{{ $name = strings.TrimSpace (printf "%v" .) }}{{ end }}
+
+{{ if gt (len $items_iter) 0 }}
+{{ range $items_iter }}
+{{ if reflect.IsMap . }}
+{{ $item_label := "" }}
+{{ $item_name := "" }}
+{{ $item_icon := "" }}
+
+{{ with index . "label" }}{{ $item_label = strings.TrimSpace (printf "%v" .) }}{{ end }}
+{{ with index . "name" }}{{ $item_name = strings.TrimSpace (printf "%v" .) }}{{ end }}
+{{ with index . "icon" }}{{ $item_icon = strings.TrimSpace (printf "%v" .) }}{{ end }}
+
+{{ if or $item_label $item_name }}
+{{ $items = $items | append (dict "label" $item_label "name" $item_name "icon" $item_icon) }}
+{{ end }}
+{{ end }}
+{{ end }}
+{{ end }}
+
+{{ if and $name (gt (len $items) 0) }}
+{{ $skills = $skills | append (dict "name" $name "items" $items) }}
+{{ end }}
+{{ end }}
+{{ end }}
+{{ end }}
+
+{{ $title := "" }}
+{{ $title_raw := index $content "title" }}
+{{ if $title_raw }}{{ $title = strings.TrimSpace (printf "%v" $title_raw) }}{{ end }}
+
+{{ if $title }}
+<div class="flex flex-col items-start justify-start max-w-full px-0 mb-8 w-full">
+    <div class="mb-6 text-3xl font-bold text-gray-900 dark:text-white">
+        {{ $words := split $title " " }}
+        <span
+            style="border-bottom: 3px solid #155ea3; padding-bottom: 2px; display: inline-block; padding-right: 4px;">{{
+            index $words 0 }}</span>
+        {{ if gt (len $words) 1 }}
+        {{ delimit (after 1 $words) " " }}
+        {{ end }}
+    </div>
+</div>
+{{ end }}
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start px-0 pb-12 w-full">
+    {{ range $skills }}
+    <div class="w-full">
+        <div class="mb-4 text-xl font-bold text-gray-900 dark:text-white">
+            {{ index . "name" | markdownify | emojify }}
+        </div>
+        <div class="flex flex-wrap gap-2">
+            {{ range (index . "items") }}
+            {{ $label := index . "label" | default (index . "name") }}
+            <span
+                class="inline-flex items-center px-3.5 py-1.5 rounded-full text-sm font-medium bg-[#155ea3]/10 text-[#155ea3] border border-[#155ea3]/20">
+                {{ with index . "icon" }}
+                <span class="mr-1.5 flex items-center">
+                    {{ partial "functions/get_icon" (dict "name" . "attributes" "style=\"height: 1em;\"") }}
+                </span>
+                {{ end }}
+                {{ $label | markdownify | emojify }}
+            </span>
+            {{ end }}
+        </div>
+    </div>
+    {{ end }}
+</div>

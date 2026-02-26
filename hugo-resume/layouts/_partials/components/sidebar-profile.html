@@ -1,0 +1,76 @@
+{{ $profile := partialCached "functions/get_author_profile" "farnaz-soltaniani" "farnaz-soltaniani" }}
+
+<!-- Left static sidebar for the profile block -->
+<div
+    class="md:w-56 shrink-0 md:sticky md:top-32 h-max overflow-y-auto hidden md:block pr-8 pb-12 pt-[60px] opacity-75 hover:opacity-100 transition-opacity duration-300 group/sidebar">
+    <div class="flex flex-col items-start text-left space-y-4 w-full">
+        {{ if $profile.avatar }}
+        <div class="flex justify-start w-full mb-2">
+            {{ $avatar_image := $profile.avatar.Fill "144x144 Center" }}
+            <div class="p-[5px] border border-[#f2f3f3] rounded-full inline-block">
+                <img class="rounded-full w-32 h-32 object-cover" src="{{ $avatar_image.RelPermalink }}"
+                    alt="{{ $profile.title }}">
+            </div>
+        </div>
+        {{ end }}
+
+        <h1 class="text-[19px] font-bold text-[#3d4144] mt-2 mb-0 w-full text-left">{{ $profile.title }}</h1>
+
+        <div class="text-[14px] text-gray-500 leading-snug w-full text-left">
+            {{ $profile.role | markdownify | emojify }}
+        </div>
+
+        <div class="pt-3 flex flex-col space-y-3 mt-3 text-[13px] text-gray-500">
+            {{ range $profile.links }}
+            <a href="{{ .url }}" target="_blank" rel="noopener"
+                class="flex items-center text-[#3d4144] hover:text-[#155ea3] hover:underline transition-colors group/link">
+                {{ $pack := or .icon_pack "fas" }}
+                {{ $icon := .icon }}
+                {{ if in .icon "/" }}
+                {{ $parts := split .icon "/" }}
+                {{ $pack = index $parts 0 }}
+                {{ $icon = index $parts 1 }}
+                {{ end }}
+
+                {{ $colorStyle := "color: #3d4144;" }}
+                {{ if eq $icon "skype" }}{{ $colorStyle = "color: #00aff0;" }}{{ end }}
+                {{ if eq $icon "linkedin" }}{{ $colorStyle = "color: #0a66c2;" }}{{ end }}
+                {{ if eq $icon "github" }}{{ $colorStyle = "color: #171516;" }}{{ end }}
+                {{ if or (eq $icon "google-scholar") (in .url "scholar.google") }}{{ $colorStyle = "color: #4285F4;" }}{{ end }}
+                {{ if eq $icon "orcid" }}{{ $colorStyle = "color: #A6CE39;" }}{{ end }}
+
+                <span class="w-4 h-4 mr-3 flex items-center justify-center" style="{{ $colorStyle | safeCSS }}">
+                    {{ $attr := "class='w-4 h-4 fill-current'" }}
+                    {{ partial "functions/get_icon" (dict "name" $icon "pack" $pack "attributes" $attr) }}
+                </span>
+                <span>
+                    {{ $display := .label }}
+                    {{ if not $display }}
+                    {{ $display = .url | replaceRE "^https?://" "" | replaceRE "^mailto:" "" | strings.TrimRight "/" }}
+                    {{ if eq .icon_pack "academicons" }}{{ $display = "Google Scholar" }}{{ end }}
+                    {{ if in .url "scholar.google" }}{{ $display = "Google Scholar" }}{{ end }}
+                    {{ if in .url "skype" }}{{ $display = "Skype" }}{{ end }}
+                    {{ if in .url "linkedin" }}{{ $display = "LinkedIn" }}{{ end }}
+                    {{ end }}
+                    {{ $display }}
+                </span>
+            </a>
+            {{ end }}
+        </div>
+    </div>
+</div>
+
+<!-- Mobile Profile Block -->
+<div class="block md:hidden mb-12 flex flex-col items-start text-left space-y-4">
+    {{ if $profile.avatar }}
+    {{ $avatar_image := $profile.avatar.Fill "144x144 Center" }}
+    <div class="p-[5px] border border-[#f2f3f3] rounded-full inline-block">
+        <img class="rounded-full w-32 h-32 object-cover" src="{{ $avatar_image.RelPermalink }}"
+            alt="{{ $profile.title }}">
+    </div>
+    {{ end }}
+    <h1 class="text-[19px] font-bold text-[#3d4144]">{{ $profile.title }}</h1>
+    <div class="text-[14px] text-gray-500 leading-snug max-w-sm">
+        {{ $profile.role | markdownify | emojify }}
+    </div>
+</div>
