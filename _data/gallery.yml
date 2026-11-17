@@ -1,0 +1,36 @@
+# Gallery photos (files live in images/gallery/), newest first.
+# An entry with "album" shows one tile that opens a slideshow of those photos.
+- file: day1-desk.jpg
+  caption: First day as a postdoc, Paderborn, October 2026
+  album:
+    - file: day1-desk.jpg
+      caption: First day as a postdoc, Heinz Nixdorf Institute, Paderborn
+    - file: day1-welcome.jpg
+      caption: A warm welcome from the Secure Software Engineering group
+    - file: day1-view.jpg
+      caption: The view from my new office
+    - file: day1-setup.jpg
+      caption: New desk, ready to start
+- file: defense-title.jpg
+  caption: PhD defense, TU Clausthal, July 2026
+  album:
+    - file: defense-title.jpg
+      caption: PhD defense, TU Clausthal, July 2026
+    - file: defense-secrets.jpg
+      caption: "PhD defense: secret detection results"
+    - file: defense-standing.jpg
+      caption: At the PhD defense, TU Clausthal
+- file: conference-group.jpg
+  caption: SANER 2026
+- file: presentation.jpg
+  caption: Paper presentation at PROMISE 2025
+- file: fse-conference.jpg
+  caption: FSE 2025, Trondheim
+- file: fse-group.jpg
+  caption: FSE 2025 student volunteers
+- file: goslar.jpg
+  caption: Goslar, Harz Mountains
+- file: berlin.jpg
+  caption: Berlin
+- file: budapest.jpg
+  caption: Budapest

@@ -1,0 +1,92 @@
+---
+layout: archive
+title: "Gallery"
+permalink: /portfolio/
+author_profile: true
+---
+
+{% include base_path %}
+
+<p>Photography is my hobby outside research. A few moments from conferences and travels:</p>
+
+<div class="gallery-grid">
+  {% for photo in site.data.gallery %}
+  <figure>
+    <a class="gallery-link{% if photo.album %} gallery-album{% endif %}" href="{{ base_path }}/images/gallery/{{ photo.file }}" data-caption="{{ photo.caption | escape }}">
+      <img src="{{ base_path }}/images/gallery/{{ photo.file }}" alt="{{ photo.caption | escape }}" loading="lazy">
+      {% if photo.album %}
+      <span class="album-badge"><i class="fas fa-images" aria-hidden="true"></i> {{ photo.album | size }} photos</span>
+      <span class="album-photos" hidden>
+        {% for p in photo.album %}<span data-src="{{ base_path }}/images/gallery/{{ p.file }}" data-caption="{{ p.caption | escape }}"></span>{% endfor %}
+      </span>
+      {% endif %}
+    </a>
+    <figcaption>{{ photo.caption }}</figcaption>
+  </figure>
+  {% endfor %}
+</div>
+
+<dialog class="lightbox" id="lightbox" aria-label="Photo viewer">
+  <button type="button" class="lightbox__close" aria-label="Close">&times;</button>
+  <button type="button" class="lightbox__nav lightbox__prev" aria-label="Previous photo">&#8249;</button>
+  <figure class="lightbox__figure">
+    <img class="lightbox__img" src="" alt="">
+    <figcaption class="lightbox__caption"></figcaption>
+  </figure>
+  <button type="button" class="lightbox__nav lightbox__next" aria-label="Next photo">&#8250;</button>
+</dialog>
+
+<script>
+(function () {
+  var links = Array.prototype.slice.call(document.querySelectorAll('.gallery-link'));
+  var box = document.getElementById('lightbox');
+  if (!box || !links.length || typeof box.showModal !== 'function') { return; }
+  var img = box.querySelector('.lightbox__img');
+  var cap = box.querySelector('.lightbox__caption');
+  var slides = [];
+  var current = 0;
+
+  /* Single photos slide through each other; an album slides through its own photos only */
+  var singles = links.filter(function (l) { return !l.classList.contains('gallery-album'); })
+    .map(function (l) { return { src: l.getAttribute('href'), caption: l.dataset.caption }; });
+
+  function show(i) {
+    current = (i + slides.length) % slides.length;
+    img.src = slides[current].src;
+    img.alt = slides[current].caption;
+    cap.textContent = slides[current].caption + (slides.length > 1 ? '  (' + (current + 1) + ' / ' + slides.length + ')' : '');
+  }
+
+  links.forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (link.classList.contains('gallery-album')) {
+        slides = Array.prototype.slice.call(link.querySelectorAll('.album-photos span'))
+          .map(function (s) { return { src: s.dataset.src, caption: s.dataset.caption }; });
+        show(0);
+      } else {
+        slides = singles;
+        show(singles.findIndex(function (s) { return s.src === link.getAttribute('href'); }));
+      }
+      box.showModal();
+    });
+  });
+
+  box.querySelector('.lightbox__close').addEventListener('click', function () { box.close(); });
+  box.querySelector('.lightbox__prev').addEventListener('click', function () { show(current - 1); });
+  box.querySelector('.lightbox__next').addEventListener('click', function () { show(current + 1); });
+
+  /* Click on the dark background (outside the photo) closes it */
+  box.addEventListener('click', function (e) {
+    if (e.target === box) { box.close(); }
+  });
+
+  /* Arrow keys move between photos; Esc closes (built into the dialog element) */
+  box.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft') { show(current - 1); }
+    if (e.key === 'ArrowRight') { show(current + 1); }
+  });
+
+  box.addEventListener('close', function () { img.src = ''; });
+})();
+</script>

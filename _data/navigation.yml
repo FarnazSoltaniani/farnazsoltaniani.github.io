@@ -1,0 +1,10 @@
+# Top menu (same items as the previous site)
+main:
+  - title: "Bio"
+    url: /
+
+  - title: "Papers"
+    url: /publications/
+
+  - title: "Gallery"
+    url: /portfolio/
