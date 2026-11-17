@@ -53,9 +53,9 @@ My research uses **machine learning and LLMs to find security problems in softwa
 
 <ul class="timeline">
   <li><span class="tl-date">Jul 2026</span> <span><strong>PhD defense:</strong> <em>Bridging the Gap: A Roadmap for AI-driven Security Analysis</em> · TU Clausthal [<a href="/files/Soltaniani_PhD_Defense_Slides.pdf">slides</a>]</span></li>
-  <li><span class="tl-date">Mar 2026</span> <span><strong>SANER 2026</strong> · Cyprus<span class="tl-sub"><em>From Data Leak to Secret Misses: The Impact of Data Leakage on Secret Detection Models</em></span></span></li>
-  <li><span class="tl-date">Mar 2026</span> <span><strong>MSR4P&amp;S Workshop @ SANER 2026</strong> · Cyprus<span class="tl-sub"><em>Evaluating Large Language Models for Security Bug Report Prediction</em></span></span></li>
-  <li><span class="tl-date">Jun 2025</span> <span><strong>PROMISE 2025</strong> (co-located with FSE) · Trondheim, Norway<span class="tl-sub"><em>Security Bug Report Prediction Within and Across Projects: A Comparative Study of BERT and Random Forest</em></span></span></li>
+  <li><span class="tl-date">Mar 2026</span> <span><strong>SANER 2026</strong> · Cyprus [<a href="/files/Soltaniani_SANER2026_Slides.pdf">slides</a>]<span class="tl-sub"><em>From Data Leak to Secret Misses: The Impact of Data Leakage on Secret Detection Models</em></span></span></li>
+  <li><span class="tl-date">Mar 2026</span> <span><strong>MSR4P&amp;S Workshop @ SANER 2026</strong> · Cyprus [<a href="/files/Soltaniani_MSR4PS2026_Slides.pdf">slides</a>]<span class="tl-sub"><em>Evaluating Large Language Models for Security Bug Report Prediction</em></span></span></li>
+  <li><span class="tl-date">Jun 2025</span> <span><strong>PROMISE 2025</strong> (co-located with FSE) · Trondheim, Norway [<a href="/files/Soltaniani_PROMISE2025_Slides.pdf">slides</a>]<span class="tl-sub"><em>Security Bug Report Prediction Within and Across Projects: A Comparative Study of BERT and Random Forest</em></span></span></li>
 </ul>
 
 ## Service
@@ -72,6 +72,13 @@ My research uses **machine learning and LLMs to find security problems in softwa
 <ul class="timeline">
   <li><span class="tl-date">2025</span> <span>Student volunteer, <strong>FSE 2025</strong>, Trondheim</span></li>
   <li><span class="tl-date">2019</span> <span>Conference staff, <strong>CiDaS 2019</strong> · Erasmus+ GraDAna School, Aristotle University of Thessaloniki</span></li>
+</ul>
+
+**Events attended**
+
+<ul class="timeline">
+  <li><span class="tl-date">Nov 2025</span> <span><strong>ASEAI 2025</strong>, African Winter School on Software Engineering &amp; AI · online [<a href="/files/Certificate_ASEAI_2025.pdf">certificate</a>]</span></li>
+  <li><span class="tl-date">Jun 2025</span> <span><strong>FSE 2025 + ISSTA 2025</strong> · Trondheim, Norway [<a href="/files/Certificate_FSE_ISSTA_2025.pdf">certificate</a>]</span></li>
 </ul>
 
 **Languages:** Persian, Turkish (native) · English (C1) · German (A2)

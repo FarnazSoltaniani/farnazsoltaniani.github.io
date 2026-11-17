@@ -18,7 +18,7 @@ author_profile: true
     <li>
       <span class="pub-title">{{ post.title }}</span>
       <span class="pub-meta">{% if post.authors %}{{ post.authors }} · {% endif %}{% assign yr = post.date | date: "%Y" %}{{ post.venue }}{% unless post.venue contains yr %}, {{ yr }}{% endunless %}</span>
-      <span class="pub-links">{% if post.paperurl %}<a href="{{ post.paperurl }}">DOI</a>{% endif %}{% if post.arxivurl %}<a href="{{ post.arxivurl }}">arXiv</a>{% endif %}{% if post.slidesurl %}<a href="{{ base_path }}{{ post.slidesurl }}">Defense slides</a>{% endif %}</span>
+      <span class="pub-links">{% if post.paperurl %}<a href="{{ post.paperurl }}">DOI</a>{% endif %}{% if post.arxivurl %}<a href="{{ post.arxivurl }}">arXiv</a>{% endif %}{% if post.slidesurl %}<a href="{{ base_path }}{{ post.slidesurl }}">{{ post.slideslabel | default: "Slides" }}</a>{% endif %}</span>
     </li>
     {% endfor %}
   </ul>
